@@ -1,4 +1,4 @@
-## Modified A* algorithm with Distance cost
+# Modified A* algorithm with Distance cost
 For planning path for indoor robots, the original A* algorithm has a problem; __Genelating the path too close to obstacles.__ 
 Therefore, in this modification, __"Distance Cost"__ is added to cost calculation of A* algorithm.  
 
