@@ -76,3 +76,9 @@ def astar(maze, start, end):
 It generate the path list in grid scale. The input _maze_ is type of binary list which is the returning form of __img2binList__ function. Return value should be reversed because A* algorithm collect the elements of the path from the end node to start node.
 
 <center><img src="https://github.com/SeunghyunLim/Astar-with-FMM/blob/master/img/E5_223_path.png" alt="drawing" width="480"/></center>
+Original python A* algorithm code is retrieved from
+https://gist.github.com/Nicholas-Swift/003e1932ef2804bebef2710527008f44#file-astar-py
+
+
+### 4. Pseudo code
+<center><img src="https://github.com/SeunghyunLim/Astar-with-FMM/blob/master/img/Astar_FMM_pseudo.png" alt="drawing" width="480"/></center>
