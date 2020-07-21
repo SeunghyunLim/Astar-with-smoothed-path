@@ -281,7 +281,7 @@ def pathplanning(start, end, image_path, verbose=0):
         plt.imshow(DISTANCECOSTMAP, interpolation='None')
         # plt.imshow(my_image)
         plt.colorbar()
-        plt.title('Irregular boundary')
+        plt.title('DISTANCECOSTMAP')
         plt.show()
         plt.close()  # press 'Q' to exit
 
