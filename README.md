@@ -49,7 +49,7 @@ Parameters: __lenWidth__ is the actual width of the map in _cm_ scale, and __GRI
 
 | Original Image (SLAM) | Cropped Image | Binary List | DISTANCECOSTMAP |
 |---|---|---|---|
-|![a](https://github.com/SeunghyunLim/Astar-with-FMM/blob/master/img/original_map_image.png)|![a](https://github.com/SeunghyunLim/Astar-with-FMM/blob/master/img/cropped_map_image.png)|![a](https://github.com/SeunghyunLim/Astar-with-FMM/blob/master/img/cropped_binary_list.png)|![a](https://github.com/SeunghyunLim/Astar-with-FMM/blob/master/img/DISTANCECOSTMAP.png)|
+|![a](https://github.com/SeunghyunLim/Astar-with-FMM/blob/master/img/SLAM.PNG)|![a](https://github.com/SeunghyunLim/Astar-with-FMM/blob/master/img/cropped.PNG)|![a](https://github.com/SeunghyunLim/Astar-with-FMM/blob/master/img/binary.PNG)|![a](https://github.com/SeunghyunLim/Astar-with-FMM/blob/master/img/costmap.PNG)|
 
 ### 2. distcost
 ```bash
