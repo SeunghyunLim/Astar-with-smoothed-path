@@ -33,13 +33,14 @@ def convert2list(img):
     return maze.tolist()
 
 
-def img2binList(img, lenWidth, GRID_SIZE=50, verbose=0):
+def img2binList(img, lenWidth, GRID_SIZE=50, verbose=1):
     global DISTANCECOSTMAP
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     _, gray = cv2.threshold(gray, 112, 255, cv2.THRESH_BINARY_INV)
     if verbose:
-        cv2.imshow("img", gray)
+        showmaze = cv2.resize(gray, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_NEAREST)
+        cv2.imshow("img", showmaze)
         cv2.waitKey(0)
 
     cnts = cv2.findContours(gray.copy(), cv2.RETR_EXTERNAL,
@@ -64,14 +65,17 @@ def img2binList(img, lenWidth, GRID_SIZE=50, verbose=0):
 
     if verbose:
         # print("found largest contour outline")
-        cv2.imshow("img", tmp)
+        showmaze = cv2.resize(tmp, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_NEAREST)
+        cv2.imshow("img", showmaze)
         cv2.waitKey(0)
 
     # print("cropping image as largest contour")
     (x, y, w, h) = cv2.boundingRect(cnts[idxLargest])
     gray = gray[y:y + h, x:x + w]
+
     if verbose:
-        cv2.imshow("img", gray)
+        showmaze = cv2.resize(gray, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_NEAREST)
+        cv2.imshow("img", showmaze)
         cv2.waitKey(0)
 
     mapWidth = (int)(lenWidth // GRID_SIZE)
@@ -81,7 +85,8 @@ def img2binList(img, lenWidth, GRID_SIZE=50, verbose=0):
     resized_gray = imutils.resize(gray, width=mapWidth)  # resize the map for convolution
     _, resized_gray = cv2.threshold(resized_gray, 1, 255, cv2.THRESH_BINARY)
     if verbose:
-        cv2.imshow("img", resized_gray)
+        showmaze = cv2.resize(resized_gray, None, fx=4.7, fy=4.7, interpolation=cv2.INTER_NEAREST)
+        cv2.imshow("img", showmaze)
         cv2.waitKey(0)
     maze = convert2list(resized_gray)
     my_maze = np.array(maze)
@@ -241,7 +246,7 @@ def pathplanning(start, end, image_path, verbose=0):
 
 	# Convert map image to binary list
     img = cv2.imread(image_path)
-    maze = img2binList(img, lenWidth=3580, GRID_SIZE=20, verbose=0) #cm, 1000 for E5-223 lobby 3580
+    maze = img2binList(img, lenWidth=3580, GRID_SIZE=20, verbose=1) #cm, 1000 for E5-223 lobby 3580
     # Start and End point setting
 
     print("Start =", start, '\n', "End =", end)
@@ -291,4 +296,4 @@ if __name__ == '__main__':
     start = (100, 55)
     end = (100, 144) # (45,33) green sofa (87,76) desk (70, 115) tree (75, 160) dosirak (100,144) gs
 
-    pathplanning(start, end, image_path="lobby3.jpg", verbose=1)
+    pathplanning(start, end, image_path="lobby.jpg", verbose=1)
