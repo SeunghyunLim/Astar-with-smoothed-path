@@ -246,7 +246,7 @@ def pathplanning(start, end, image_path, verbose=0):
 
 	# Convert map image to binary list
     img = cv2.imread(image_path)
-    maze = img2binList(img, lenWidth=3580, GRID_SIZE=20, verbose=1) #cm, 1000 for E5-223 lobby 3580
+    maze = img2binList(img, lenWidth=3580, GRID_SIZE=20, verbose=0) #cm, 1000 for E5-223 lobby 3580
     # Start and End point setting
 
     print("Start =", start, '\n', "End =", end)
@@ -266,25 +266,27 @@ def pathplanning(start, end, image_path, verbose=0):
         # Visualizing binary map and generated path
         showmaze = np.array(maze).astype(np.uint8)
         showmaze *= 255
+        showmaze = np.stack((showmaze,)*3, axis=-1)
         num_of_searched_node = 0
         """
         for walkable in walkable_plane_list(100, 100):          # checking walkable plane
         showmaze[walkable[0]][walkable[1]] = 60
         """
         for searched in checked_positions:
-            showmaze[searched[0]][searched[1]] = 40
+            showmaze[searched[0]][searched[1]] = [40, 40, 40]
         for colorpath in path:
-            showmaze[colorpath[0]][colorpath[1]] = 70
+            showmaze[colorpath[0]][colorpath[1]] = [200, 50, 200]
             num_of_searched_node += 1
         print(num_of_searched_node)
 
-        showmaze[start[0]][start[1]] = 150
-        showmaze[end[0]][end[1]] = 200
+        for i in [-1, 0, 1]:
+            for j in [-1, 0, 1]:
+                showmaze[start[0] - i][start[1] - j] = [0, 254, 0]
+                showmaze[end[0] - i][end[1] - j] = [0, 0, 254]
         showmaze = cv2.resize(showmaze, None, fx=7, fy=7, interpolation=cv2.INTER_NEAREST)
-        cv2.imshow('Sample A* algorithm run with distance cost', showmaze)
+        cv2.imshow('A* algorithm run with distance cost', showmaze)
         cv2.waitKey(0)
         plt.imshow(DISTANCECOSTMAP, interpolation='None')
-        # plt.imshow(my_image)
         plt.colorbar()
         plt.title('DISTANCECOSTMAP')
         plt.show()
@@ -294,6 +296,6 @@ def pathplanning(start, end, image_path, verbose=0):
 
 if __name__ == '__main__':
     start = (100, 55)
-    end = (100, 144) # (45,33) green sofa (87,76) desk (70, 115) tree (75, 160) dosirak (100,144) gs
+    end = (30, 144) # (45,33) green sofa (87,76) desk (70, 115) tree (75, 160) dosirak (100,144) gs
 
     pathplanning(start, end, image_path="lobby.jpg", verbose=1)
