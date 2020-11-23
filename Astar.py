@@ -240,7 +240,7 @@ def astar(maze, start, end):
                 open_list.append(child)
 
 
-def pathplanning(start, end, image_path, verbose=0):
+def pathplanning(start, end, image_path, verbose=False):
     # Running Time Check
     starttime = time.time()
 
@@ -297,5 +297,4 @@ def pathplanning(start, end, image_path, verbose=0):
 if __name__ == '__main__':
     start = (100, 55)
     end = (30, 144) # (45,33) green sofa (87,76) desk (70, 115) tree (75, 160) dosirak (100,144) gs
-
-    pathplanning(start, end, image_path="lobby.jpg", verbose=1)
+    pathplanning(start, end, image_path="lobby.jpg", verbose=True)
