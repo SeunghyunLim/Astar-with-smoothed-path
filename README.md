@@ -13,7 +13,7 @@ Below chart shows the difference by applying distance cost to actual pathplannin
 
 | Without distance cost | With distance cost |
 |---|---|
-|![a](https://github.com/SeunghyunLim/Astar-with-FMM/blob/master/img/lobby_test_withoutDC.png)|![a](https://github.com/SeunghyunLim/Astar-with-FMM/blob/master/img/lobby_test_withDC.png)|
+|![a](https://github.com/SeunghyunLim/Astar-with-FMM/blob/master/img/GPP_without_d.PNG)|![a](https://github.com/SeunghyunLim/Astar-with-FMM/blob/master/img/GPP_with_d.PNG)|
 
 You can try this pathplanning in 'lobby_obtimization_sample.py.
 
